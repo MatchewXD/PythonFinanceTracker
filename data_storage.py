@@ -1,10 +1,8 @@
-datastorage = []
+income = []
+expence = []
 
-def storage(amount, date, category):
-  datastorage.append({'value': amount, 'date': date, 'category': category})
+def store_income(amount, date, category):
+  income.append({'value': amount, 'date': date, 'category': category})
 
-
-storage(100, "01/18/2024", "savings")
-storage(300, "01/20/2024", "computer")
-
-print(datastorage)
+def store_expence(amount, date, category):
+  expence.append({'value': amount, 'date': date, 'category': category})
