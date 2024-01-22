@@ -1,3 +1,5 @@
+from data_storage import store_income
+
 print('Financial Tracker initializing')
 username = ''
 task = ''
@@ -22,6 +24,7 @@ def handle_task_option(task):
   if task != 'exit':
     if task == 'add_income':
       print('what would you like to add? (amount, date, category)')
+      add_income()
     elif task == 'add_expense':
       print('What would you like to add? (amount, date, category)')
     elif task == 'view_summary':
@@ -30,7 +33,49 @@ def handle_task_option(task):
       print('Invalid input, ')
       user_task_options()
 
+def add_income():
+  users_income = input()
+  # check if the input is amount, date, category
+  # convert the data into a dictionary
+  parse_user_input(users_income)
+  # run function store_income with the dictionary
 
+def parse_user_input(users_input):
+  parts = 0 # what part of the string? amount = 0, date = 1 or category = 2
+  amount = 0
+  date = ''
+  category = ''
+  current_string = ''
+
+  # take a string and separate it into parts depending on a ,
+  current_iteration = 1
+  for current_letter in users_input:
+    if current_letter == ' ':
+      current_iteration += 1
+      continue
+    if current_letter == ',':
+      # if part == 0 convert string to number
+      if parts == 0:
+        amount = int(current_string)
+        current_string = ''
+        parts += 1
+      # store the current string in variable. move to the next variable
+      elif parts == 1:
+        date = current_string
+        current_string = ''
+        parts += 1
+      else:
+        category = current_string
+        current_string = ''
+        parts += 1
+
+    else:
+      current_string += current_letter
+      if current_iteration == len(users_input):
+        category = current_string
+    current_iteration += 1
+  # return a dictionary with all the parts
+  return {'value' : amount, 'date' : date, 'category' : category}
 
 if __name__ == "__main__":
     main()
