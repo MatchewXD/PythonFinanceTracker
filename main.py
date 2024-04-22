@@ -7,7 +7,7 @@ task = ''
 def main():
   print('Welcome to the console-based financial tracker. What should I call you?')
   username = input()
-  print('Hello ' + username + '''
+  print('\n Hello ' + username + '''
   What can I help you with today?''')
   user_task_options()
 
@@ -37,8 +37,11 @@ def add_income():
   users_income = input()
   # check if the input is amount, date, category
   # convert the data into a dictionary
-  parse_user_input(users_income)
+  parsed_user_income = parse_user_input(users_income)
   # run function store_income with the dictionary
+  store_income(parsed_user_income)
+  print('\n Your Income has been Stored')
+  user_task_options()
 
 def parse_user_input(users_input):
   parts = 0 # what part of the string? amount = 0, date = 1 or category = 2
