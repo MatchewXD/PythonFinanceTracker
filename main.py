@@ -1,4 +1,4 @@
-from data_storage import store_income, store_expense
+from data_storage import store_income, store_expense, income, expense
 
 print('Financial Tracker initializing')
 username = ''
@@ -30,7 +30,7 @@ def handle_task_option(task):
       print('What would you like to add? (amount, date, category)')
       add_expense()
     elif task == 'view_summary':
-      print('Here is a summary: \n')
+      view_summary()
     else:
       print('Invalid input, ')
       user_task_options()
@@ -51,6 +51,42 @@ def add_expense():
   store_expense(parsed_user_expense)
   print('\n Your Expense has been Stored')
   user_task_options()
+
+def view_summary():
+  if len(income) == 0 and len(expense) == 0:
+    print('There are not transactions')
+    user_task_options()
+    return
+
+  income_list = create_list(income)
+  expense_list = create_list(expense)
+
+  print('''Income Summary
+        Amount --- Date --- Category''')
+  print(income_list)
+  print("""Expense Summary
+        Amount --- Date --- Category""")
+  print(expense_list)
+
+  print('\n \n \n ')
+  print('Type anything to return to the options menu')
+  temp_input = input()
+  user_task_options()
+
+def create_list(transaction_summary):
+  final_list = ''
+  for i in transaction_summary:
+    print()
+    return
+    temp_string = ''
+    temp_string + i['value'] + '  '
+    temp_string + i['date'] + '  '
+    temp_string + i['category']
+    final_list + temp_string + '\n'
+  return final_list
+
+
+
 
 def parse_user_input(users_input):
   parts = 0 # what part of the string? amount = 0, date = 1 or category = 2
