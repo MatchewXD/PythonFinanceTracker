@@ -1,4 +1,4 @@
-from data_storage import store_income
+from data_storage import store_income, store_expense
 
 print('Financial Tracker initializing')
 username = ''
@@ -16,6 +16,7 @@ def user_task_options():
         add_income
         add_expense
         view_summary
+        exit
         ''')
   task = input()
   handle_task_option(task)
@@ -27,6 +28,7 @@ def handle_task_option(task):
       add_income()
     elif task == 'add_expense':
       print('What would you like to add? (amount, date, category)')
+      add_expense()
     elif task == 'view_summary':
       print('Here is a summary: \n')
     else:
@@ -41,6 +43,13 @@ def add_income():
   # run function store_income with the dictionary
   store_income(parsed_user_income)
   print('\n Your Income has been Stored')
+  user_task_options()
+
+def add_expense():
+  users_expense = input()
+  parsed_user_expense = parse_user_input(users_expense)
+  store_expense(parsed_user_expense)
+  print('\n Your Expense has been Stored')
   user_task_options()
 
 def parse_user_input(users_input):
