@@ -2,3 +2,4 @@ finance_tracker_env/
 __pycache__/
 data_storage.pyc
 test_driven_development.pyc
+testing.py

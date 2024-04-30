@@ -58,31 +58,28 @@ def view_summary():
     user_task_options()
     return
 
-  income_list = create_list(income)
-  expense_list = create_list(expense)
+  income_list = create_transaction_list(income)
+  expense_list = create_transaction_list(expense)
 
-  print('''Income Summary
-        Amount --- Date --- Category''')
+  print('''\nIncome Summary
+Amount --- Date --- Category''')
   print(income_list)
   print("""Expense Summary
-        Amount --- Date --- Category""")
+Amount --- Date --- Category""")
   print(expense_list)
 
   print('\n \n \n ')
-  print('Type anything to return to the options menu')
+  print('Type enter to return to the options menu')
   temp_input = input()
   user_task_options()
 
-def create_list(transaction_summary):
+def create_transaction_list(transaction_summary):
   final_list = ''
   for i in transaction_summary:
-    print()
-    return
-    temp_string = ''
-    temp_string + i['value'] + '  '
-    temp_string + i['date'] + '  '
-    temp_string + i['category']
-    final_list + temp_string + '\n'
+    final_list += f'- {i['value']}  {i['date']}  {i['category']}'
+    if i != len(transaction_summary):
+      final_list += '\n'
+
   return final_list
 
 
@@ -104,7 +101,7 @@ def parse_user_input(users_input):
     if current_letter == ',':
       # if part == 0 convert string to number
       if parts == 0:
-        amount = int(current_string)
+        amount = float(current_string)
         current_string = ''
         parts += 1
       # store the current string in variable. move to the next variable
