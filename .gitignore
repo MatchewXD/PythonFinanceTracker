@@ -3,3 +3,4 @@ __pycache__/
 data_storage.pyc
 test_driven_development.pyc
 testing.py
+plaid_secrets.py
